@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 640 640" width="640px" height="640px">
+    <defs>
+        <!-- This masks out the area outside of the circle -->
+        <mask id="circularBoundary">
+            <!-- Make everything fully transparent -->
+            <rect width="100%" height="100%" fill="black" />
+            <!-- Then fill in the circle -->
+            <circle cx="50%" cy="50%" fill="white" r="50%" />
+        </mask>
+
+        <mask id="linesMask">
+            <!-- Make everything fully opaque -->
+            <rect width="100%" height="100%" fill="white" />
+            <!-- Then mask out the section at the top-->
+            <rect width="50%" height="50%" x="25%" fill="black" />
+        </mask>
+        <mask id="linesMaskSquare">
+            <!-- Make everything fully opaque -->
+            <rect width="100%" height="100%" fill="white" />
+            <!-- Then mask out the section at the top-->
+            <rect width="40%" height="50%" x="30%" fill="black" />
+        </mask>
+
+        <!-- Circle used to curve text around the battery indicator -->
+        <path id="batteryTextCurve" d="M 20, 280
+        m -64, 0
+        a 64,64 0 1,0 128,0" />
+
+        <!-- Path for the Dot Matrix With Stereo Sound text to wrap around -->
+        <path id="linesPath" d="M 57 180 a 320 360 180 0 1 525 0" />
+
+        <filter id="screen-drop-shadow">
+            <feDropShadow dx="0" dy="0" stdDeviation="15" flood-opacity="40%" />
+        </filter>
+
+        <filter id="button-drop-shadow">
+            <feDropShadow dx="2" dy="2" stdDeviation="2" flood-opacity="50%" />
+        </filter>
+    </defs>
+    <style>
+        :root {
+            /* The screen colour */
+            --screen: #81922c;
+            /* The main colour */
+            --case: #e0d6d2;
+            /* The frame around the screen */
+            --bezel: #8b8593;
+            /* The button colours */
+            --buttons: #972558;
+            /* The first line at the top */
+            --top-line-1: #972558;
+            /* The second line at the top */
+            --top-line-2: #1d1858;
+        }
+
+        .dmss-font {
+            font-family: "Futura PT";
+        }
+    </style>
+
+
+    <g id="square-face" visibility="hidden">
+        <!-- Make the bezel -->
+         <rect x="3.125%" y="3.125%" width="93.75%" height="65.75%" fill="transparent" style="stroke: var(--bezel)" stroke-width="6.25%" />
+         <!-- Make the bottom part of the case -->
+        <!-- Now we add the bottom part of the case-->
+        <rect y="72%" x="0%" height="28%" width="100%" style="fill: var(--case)" /> 
+
+        <!-- The "Dot Matrix With Stereo Sound" lines and text -->
+        <g id="dmss">
+            <g id="dmss-lines" mask="url(#linesMaskSquare)">
+                <rect x="7.5%" y="10" width="85%" height="1%" style="fill: var(--top-line-1)" />
+                <rect x="7.5%" y="20" width="85%" height="1%" style="fill: var(--top-line-2)" />
+            </g>
+            <text fill="white" text-anchor="middle" class="dmss-font" x="50%" y="24">
+                    DOT MATRIX WITH STEREO SOUND
+            </text>
+        </g>
+
+        <!-- Now we add the battery indicator and curved text -->
+        <g id="battery-indicator">
+            <circle fill="black" r="1.5%" cx="3.125%" cy="25%" />
+            <text fill="white" font-size="0.55em" class="dmss-font" text-anchor="middle" transform="translate(0, -160)">
+                <textPath href="#batteryTextCurve" startOffset="50%">
+                    BATTERY
+                </textPath>
+            </text>
+        </g>
+
+        <g id="buttons" filter="url(#button-drop-shadow)">
+            <g id="dpad">
+                <rect width="5%" height="15%" fill="black" x="10%" y="80%" rx="1%" />
+                <rect width="15%" height="5%" fill="black" x="5%" y="85%" rx="1%" />
+            </g>
+            <g id="a-b-buttons">
+                <circle cx="89%" cy="85%" r="4%" style="fill: var(--buttons)" stroke="black" stroke-width="0.5%" />
+                <circle cx="78%" cy="90%" r="4%" style="fill: var(--buttons)" stroke="black" stroke-width="0.5%" />
+            </g>
+
+            <g id="start-select-buttons">
+                <rect width="8%" height="2.5%" style="fill: var(--bezel)" x="14%" y="105%" ry="1%"
+                    transform="rotate(-20)" stroke="black" stroke-width="0.5%" />
+                <rect width="8%" height="2.5%" style="fill: var(--bezel)" x="4%" y="102%" ry="1%"
+                    transform="rotate(-20)" stroke="black" stroke-width="0.5%" />
+            </g>
+        </g>
+    </g>
+
+    <g id="circular-face" mask="url(#circularBoundary)" visibility="visible">
+        <!-- Make the main circle-->
+        <circle id="body" r="50%" height="100%" cx="50%" cy="50%" fill="transparent" />
+        <!-- Add the screen colour. If uncommenting this next line, remove the \ in the var() -->
+        <!-- <rect height="100%" width="100%" style="fill: var(-\-screen)" x="0" y="0" visibility="visible" /> -->
+
+        <!-- Next, add the bezel. This is a path so we can add a drop shadow -->
+        <path style="stroke: var(--bezel)" fill="transparent" stroke-width="40"
+            d="M 340, 320 m -320, 0 a 280,280 0 1,0 600,0 a 280,280 0 1,0 -600,0 m -20 120 l 640 0" mask="url(#bezelMask)"
+            filter="url(#screen-drop-shadow)" />
+
+        <!-- Now we add the bottom part of the case-->
+        <rect y="72%" x="0%" height="28%" width="100%" style="fill: var(--case)" />
+
+        <!-- The "Dot Matrix With Stereo Sound" lines and text -->
+        <g id="dmss">
+            <g id="dmss-lines" mask="url(#linesMask)">
+                <path style="stroke: var(--top-line-1); fill: none" stroke-width="1%"
+                    d="M 45 180 a 320 340 180 0 1 550 0" />
+                <path style="stroke: var(--top-line-2); fill: none" stroke-width="1%"
+                    d="M 57 180 a 320 360 180 0 1 525 0" />
+            </g>
+            <text fill="white" text-anchor="middle" class="dmss-font">
+                <textPath font-size="1.25em" href="#linesPath" startOffset="50%">
+                    DOT MATRIX WITH STEREO SOUND
+                </textPath>
+            </text>
+        </g>
+
+        <!-- Now we add the battery indicator and curved text -->
+        <g id="battery-indicator">
+            <circle fill="black" r="1.5%" cx="3.125%" cy="50%" />
+            <text fill="white" font-size="0.55em" class="dmss-font" text-anchor="middle">
+                <textPath href="#batteryTextCurve" startOffset="50%">
+                    BATTERY
+                </textPath>
+            </text>
+        </g>
+
+        <g id="buttons" filter="url(#button-drop-shadow)">
+            <g id="dpad">
+                <rect width="5%" height="15%" fill="black" x="25%" y="75%" rx="1%" />
+                <rect width="15%" height="5%" fill="black" x="20%" y="80%" rx="1%" />
+            </g>
+            <g id="a-b-buttons">
+                <circle cx="79%" cy="80%" r="4%" style="fill: var(--buttons)" stroke="black" stroke-width="0.5%" />
+                <circle cx="68%" cy="85%" r="4%" style="fill: var(--buttons)" stroke="black" stroke-width="0.5%" />
+            </g>
+
+            <g id="start-select-buttons">
+                <rect width="8%" height="2.5%" style="fill: var(--bezel)" x="18%" y="100%" ry="1%"
+                    transform="rotate(-20)" stroke="black" stroke-width="0.5%" />
+                <rect width="8%" height="2.5%" style="fill: var(--bezel)" x="8%" y="97%" ry="1%"
+                    transform="rotate(-20)" stroke="black" stroke-width="0.5%" />
+            </g>
+        </g>
+    </g>
+
+
+</svg>
