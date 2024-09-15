@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 640 640" width="640px" height="640px">
+    <defs>
+        <!-- This masks out the area outside of the circle -->
+        <mask id="circularBoundary">
+            <!-- Make everything fully transparent -->
+            <rect width="100%" height="100%" fill="black" />
+            <!-- Then fill in the circle -->
+            <circle cx="50%" cy="50%" fill="white" r="50%" />
+        </mask>
+
+        <mask id="bezelMask">
+            <!-- Make everything fully opaque -->
+            <rect width="100%" height="100%" fill="white" />
+            <rect x="20%" y="17.25%" rx="5%" fill="black" height="65%" width="60%" />
+        </mask>
+
+        <mask id="lensMask">
+            <!-- Make everything fully opaque -->
+            <rect width="100%" height="100%" fill="white" />
+            <rect x="22.5%" y="20%" rx="5%" fill="black" height="50%" width="55%" />
+        </mask>
+
+        <filter id="screen-drop-shadow">
+            <feDropShadow dx="0" dy="0" stdDeviation="15" flood-opacity="40%" />
+        </filter>
+
+        <filter id="button-drop-shadow">
+            <feDropShadow dx="4" dy="4" stdDeviation="3" flood-opacity="50%" />
+        </filter>
+    </defs>
+    <style>
+        :root {
+            /* The screen colour */
+            --screen: #72818a;
+            /* The main colour */
+            --indigo: #424787;
+            /* The frame around the screen */
+            --dark-indigo: #1f212e;
+            /* The button colours */
+            --buttons: #b9bacf;
+        }
+
+        .smartwatch-font {
+            font-family: "Futura PT";
+            paint-order: stroke;
+        }
+        .advanced-font {
+            font-family: "Gamecuben Dualset Regular";
+            paint-order: stroke;
+            letter-spacing: -5px;
+        }
+
+    </style>
+
+    <g id="circular-face" mask="url(#circularBoundary)" visibility="visible">
+        <!-- Make the main circle -->
+        <circle id="body" r="50%" height="100%" cx="50%" cy="50%" fill="transparent" />
+
+        <!-- Next, add the bezel -->
+        <circle r="100%" cx="50%" cy="50%" style="fill: var(--indigo)" mask="url(#bezelMask)" />
+
+        <!-- And then the screen lens -->
+        <rect x="20%" y="17.25%" rx="5%" style="fill: var(--dark-indigo)" height="65%" width="60%"
+            mask="url(#lensMask)" />
+
+        <!-- Now we add the battery indicator and curved text -->
+        <g id="battery-indicator">
+            <circle style="fill: lime" r="2%" cx="85%" cy="25%" />
+        </g>
+
+        <!-- And the buttons -->
+        <g id="buttons" filter="url(#button-drop-shadow)">
+            <g id="dpad">
+                <rect width="5%" height="15%" style="fill: var(--buttons)" x="8%" y="35%" rx="1%" />
+                <rect width="15%" height="5%" style="fill: var(--buttons)" x="3%" y="40%" rx="1%" />
+            </g>
+            <g id="a-b-buttons">
+                <circle cx="92%" cy="40%" r="4%" style="fill: var(--buttons)" />
+                <circle cx="87%" cy="51%" r="4%" style="fill: var(--buttons)" />
+            </g>
+
+            <g id="start-select-buttons">
+                <circle cx="14%" cy="60%" r="2%" style="fill: var(--buttons)" />
+                <circle cx="14%" cy="67%" r="2%" style="fill: var(--buttons)" />
+            </g>
+        </g>
+
+        <!-- And finally, the text -->
+        <g id="bezel-text">
+            <text class="smartwatch-font" x="54%" y="77%" text-anchor="end" fill="white" style="stroke: var(--indigo)" stroke-width="3px" font-size="1.5em">
+                SMARTWATCH
+            </text>
+            <text class="advanced-font" x="54%" y="76.75%" text-anchor="start" fill="white" style="stroke: var(--indigo)" stroke-width="3px" font-size="0.9em">
+                ADVANCE
+            </text>
+        </g>
+    </g>
+
+
+</svg>
