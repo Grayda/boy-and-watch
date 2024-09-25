@@ -30,11 +30,13 @@ You'll need three fonts to recreate this:
 
 ## swatch
 
-A Nintendo Switch themed watch. Requires no fonts. This design uses a lot of variables to make things easy to change (e.g. the joycon width)
+A Nintendo Switch themed watch. Requires no fonts. This design uses a lot of variables to make things easy to change (e.g. the joycon width). NOTE: Be careful when uploading this to Facer, as it'll get removed automatically
 
 Pull requests welcomed, issues welcomed (but I only have a Pixel Watch to test on)
 
 ![image](https://github.com/user-attachments/assets/66587b64-baa2-4014-8669-f29847450442)
-![image](https://github.com/user-attachments/assets/c49caf72-2ac9-4e36-8727-05cf3a5a8dc6)
+![image](https://github.com/user-attachments/assets/41144c96-2231-4eb4-bd0a-a927d40c1c61)
+
+
 
 
