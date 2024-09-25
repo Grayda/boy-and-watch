@@ -1,0 +1,350 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 640 640" width="640px" height="640px">
+    <defs>
+        <!-- This masks out the area outside of the circle -->
+        <mask id="circularBoundary">
+            <!-- Make everything fully transparent -->
+            <rect width="100%" height="100%" fill="black" />
+            <!-- Then fill in the circle -->
+            <circle cx="50%" cy="50%" fill="white" r="50%" />
+        </mask>
+
+        <mask id="screenMask">
+            <!-- Make everything fully opaque -->
+            <rect width="100%" height="100%" fill="white" />
+            <!-- Then cut out the circle -->
+            <circle r="45%" cx="50%" cy="50%" fill="black" />
+        </mask>
+
+        <filter id="button-drop-shadow">
+            <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="50%" />
+        </filter>
+    </defs>
+    <style>
+        :root {
+            /* Colours */
+            --screen: #202024;
+            --menu-item: #505050;
+            --bezel: #0d0d0d;
+            --dark-indigo: #1f212e;
+            --left-joycon: #00bbdf;
+            --right-joycon: #ff584d;
+            --buttons: #1a1a1a;
+            --selection-light: #8cdee3;
+            --selection: #499eb9;
+
+            /* Sizes */
+            --dpad-button-size: calc(var(--joycon-width) / 10);
+            --analogue-stick-size: calc(var(--dpad-button-size) * 2.5);
+            --joycon-width: 25%;
+            --plus-minus-width: 5%;
+            --plus-minus-height: 1%;
+            --box-size: 17%;
+            --box-spacing: 2%;
+            --screen-width: calc(var(--joycon-width) * 2 - 10%);
+
+            /* Positions */
+            --dpad-left-top: 55%;
+            --dpad-right-top: 35%;
+            --dpad-bottom-spacing: calc(var(--joycon-width) / 5);
+            /* How much spacing is between the top and bottom d-pad button */
+            --analogue-stick-left: calc(var(--dpad-left-top) + var(--dpad-bottom-spacing) - 20%);
+            --analogue-stick-right: calc(var(--dpad-right-top) + var(--dpad-bottom-spacing) + 20%);
+            --box-start-left: calc(var(--joycon-width) + 5% + 2%);
+            --box-start-top: 20%;
+            --minus-right: calc(var(--joycon-width) - var(--plus-minus-width) - 3%);
+            --plus-left: calc(100% - var(--joycon-width) - var(--plus-minus-width) + 7%);
+        }
+
+        #screenMask>circle {}
+
+        #screen>rect {
+            fill: var(--screen);
+            x: calc(var(--joycon-width) + 5%);
+            y: 0%;
+            width: var(--screen-width);
+            height: 100%;
+        }
+
+        #screen>circle {
+            mask: url(#screenMask);
+            fill: var(--bezel);
+            r: 50%;
+            cx: 50%;
+            cy: 50%
+        }
+
+        /* The menu items on the screen */
+        #screen #boxes>rect:nth-child(1) {
+            x: var(--box-start-left);
+            y: var(--box-start-top);
+            width: var(--box-size);
+            height: var(--box-size);
+            stroke: var(--selection-light);
+            stroke-width: 0.5%;
+            fill: var(--selection);
+        }
+
+        #screen #menu-circles > circle:nth-child(1) {
+            cx: calc(15% + var(--joycon-width));
+            cy: calc(100% - 15%);
+            fill: red;
+            r: calc(var(--box-size) / 4);
+        }
+
+        #screen #menu-circles > circle:nth-child(2) {
+            cx: calc(15% + var(--joycon-width) + 10%);
+            cy: calc(100% - 15%);
+            fill: var(--menu-item);
+            r: calc(var(--box-size) / 4);
+        }
+
+        #screen #menu-circles > circle:nth-child(3) {
+            cx: calc(15% + var(--joycon-width) + 20%);
+            cy: calc(100% - 15%);
+            fill: var(--menu-item);
+            r: calc(var(--box-size) / 4);
+        }
+
+        #screen #boxes>rect:nth-child(2) {
+            x: calc(var(--box-start-left) + var(--box-size) + var(--box-spacing));
+            y: var(--box-start-top);
+            width: var(--box-size);
+            height: var(--box-size);
+            fill: var(--menu-item);
+        }
+
+        #screen #boxes>rect:nth-child(3) {
+            x: calc(var(--box-start-left));
+            y: calc(var(--box-start-top) + var(--box-size) + var(--box-spacing));
+            width: var(--box-size);
+            height: var(--box-size);
+            fill: var(--menu-item);
+        }
+
+        #screen #boxes>rect:nth-child(4) {
+            x: calc(var(--box-start-left) + var(--box-size) + var(--box-spacing));
+            y: calc(var(--box-start-top) + var(--box-size) + var(--box-spacing));
+            width: var(--box-size);
+            height: var(--box-size);
+            fill: var(--menu-item);
+        }
+
+        .analogue-stick>circle {
+            fill: var(--buttons);
+            r: var(--analogue-stick-size);
+        }
+
+        #analogue-stick-left>circle {
+            cx: calc(var(--joycon-width) / 2);
+            cy: var(--analogue-stick-left);
+        }
+
+        #analogue-stick-right>circle {
+            cx: calc(100% - var(--joycon-width) / 2);
+            cy: var(--analogue-stick-right);
+        }
+
+        #screenshot-button>rect {
+            rx: 1%;
+            fill: var(--buttons);
+            x: calc(var(--joycon-width) / 2 + 2%);
+            y: calc(var(--dpad-left-top) + 17%);
+            height: 4%;
+            width: 4%;
+        }
+
+        #home-button>circle {
+            fill: var(--buttons);
+            cx: calc(100% - var(--joycon-width) / 2 - 3%);
+            cy: calc(var(--analogue-stick-right) + 14%);
+            r: 2%;
+        }
+
+        .dpad>circle {
+            fill: var(--buttons);
+            r: var(--dpad-button-size);
+        }
+
+        /* Left Joycon D-Pad top button */
+        #dpad-left circle:nth-child(1) {
+            cx: calc(var(--joycon-width) / 2);
+            cy: var(--dpad-left-top);
+        }
+
+        /* Left Joycon D-Pad right button */
+        #dpad-left circle:nth-child(2) {
+            cx: calc(var(--joycon-width) / 2 + calc(var(--dpad-bottom-spacing)));
+            cy: calc(var(--dpad-left-top) + calc(var(--dpad-bottom-spacing)));
+        }
+
+        /* Left Joycon D-Pad bottom button */
+        #dpad-left circle:nth-child(3) {
+            cx: calc(var(--joycon-width) / 2);
+            cy: calc(var(--dpad-left-top) + calc(var(--dpad-bottom-spacing) * 2));
+        }
+
+        /* Left Joycon D-Pad left button */
+        #dpad-left circle:nth-child(4) {
+            cx: calc(var(--joycon-width) / 2 - calc(var(--dpad-bottom-spacing)));
+            cy: calc(var(--dpad-left-top) + calc(var(--dpad-bottom-spacing)));
+        }
+
+        /* Right Joycon D-Pad top button */
+        #dpad-right circle:nth-child(1) {
+            cx: calc(100% - var(--joycon-width) / 2);
+            cy: var(--dpad-right-top);
+        }
+
+        /* Right Joycon D-Pad right button */
+        #dpad-right circle:nth-child(2) {
+            cx: calc(100% - var(--joycon-width) / 2 + calc(var(--dpad-bottom-spacing)));
+            cy: calc(var(--dpad-right-top) + calc(var(--dpad-bottom-spacing)));
+        }
+
+        /* Right Joycon D-Pad bottom button */
+        #dpad-right circle:nth-child(3) {
+            cx: calc(100% - var(--joycon-width) / 2);
+            cy: calc(var(--dpad-right-top) + calc(var(--dpad-bottom-spacing) * 2));
+        }
+
+        /* Right Joycon D-Pad left button */
+        #dpad-right circle:nth-child(4) {
+            cx: calc(100% - var(--joycon-width) / 2 - calc(var(--dpad-bottom-spacing)));
+            cy: calc(var(--dpad-right-top) + calc(var(--dpad-bottom-spacing)));
+        }
+
+        #minus-button>rect {
+            x: var(--minus-right);
+            y: 20%;
+            width: var(--plus-minus-width);
+            height: var(--plus-minus-height);
+            fill: var(--buttons);
+        }
+
+        #plus-button>rect:nth-child(1) {
+            x: var(--plus-left);
+            y: 20%;
+            width: var(--plus-minus-width);
+            height: var(--plus-minus-height);
+            fill: var(--buttons);
+        }
+
+        #plus-button>rect:nth-child(2) {
+            x: calc(var(--plus-left) + var(--plus-minus-width) / 2.5);
+            y: calc(20% - var(--plus-minus-width) / 2.5);
+            width: var(--plus-minus-height);
+            height: var(--plus-minus-width);
+            fill: var(--buttons);
+        }
+
+        .joycon {
+            width: var(--joycon-width);
+            height: 100%;
+        }
+
+        #left-joycon {
+            fill: var(--left-joycon);
+            x: 0;
+        }
+
+        #right-joycon {
+            fill: var(--right-joycon);
+            x: calc(100% - var(--joycon-width));
+        }
+
+        .smartwatch-font {
+            font-family: "Futura MD BT";
+            paint-order: stroke;
+        }
+
+        .advanced-font {
+            font-family: "Gamecuben Dualset Regular";
+            paint-order: stroke;
+            letter-spacing: -5px;
+        }
+    </style>
+
+    <g id="circular-face" mask="url(#circularBoundary)" visibility="visible">
+        <!-- Make the main circle -->
+        <circle id="body" r="50%" height="100%" cx="50%" cy="50%" fill="transparent" />
+
+        <!-- Next, add the bezel -->
+        <circle r="100%" cx="50%" cy="50%" style="fill: var(--bezel)" />
+
+        <!-- And add the screen -->
+        <g id="screen">
+            <circle />
+            <rect />
+            <circle />
+            <g id="screen-icons">
+                <g id="boxes">
+                    <rect />
+                    <rect />
+                    <rect />
+                    <rect />
+                </g>
+            </g>
+            <g id="menu-circles">
+                <circle />
+                <circle />
+                <circle />
+            </g>
+        </g>
+
+        <!-- Now, we add the Joy-cons -->
+        <g id="joycons">
+            <rect id="left-joycon" class="joycon" />
+            <rect id="right-joycon" class="joycon" />
+        </g>
+
+        <!-- And the buttons -->
+        <g id="buttons" filter="url(#button-drop-shadow)">
+            <g id="buttons-left">
+                <g id="analogue-stick-left" class="analogue-stick">
+                    <circle />
+                </g>
+                <!-- In this order: Top, right, bottom, left -->
+                <g id="dpad-left" class="dpad">
+                    <circle />
+                    <circle />
+                    <circle />
+                    <circle />
+                </g>
+
+                <g id="screenshot-button">
+                    <rect />
+                </g>
+            </g>
+
+            <g id="buttons-right">
+                <g id="analogue-stick-right" class="analogue-stick">
+                    <circle cx="86%" cy="32%" r="6%" style="fill: var(--buttons)" />
+                </g>
+                <g id="dpad-right" class="dpad">
+                    <circle />
+                    <circle />
+                    <circle />
+                    <circle />
+                </g>
+
+                <g id="home-button">
+                    <circle />
+                </g>
+            </g>
+
+            <!-- The + and - buttons -->
+            <g id="minus-button">
+                <rect />
+            </g>
+
+            <g id="plus-button">
+                <rect />
+                <rect />
+            </g>
+        </g>
+
+
+    </g>
+
+
+</svg>
