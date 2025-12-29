@@ -8,16 +8,17 @@ Each one was hand-created in SVG, with VS Code as the IDE and the jock.svg exten
 
 ## boy-and-watch
 
-This is a Game Boy (DMG, Pocket, Light, Color and Advance) themed watch, available in square and round configurations and can be found [here](https://play.google.com/store/apps/details?id=photography.davidgray.boyandwatch)
+This is a Game Boy (DMG, Pocket, Light, Color, Advance, SP, Micro and Virtual Boy) themed watch, available in square and round configurations and can be found [here](https://play.google.com/store/apps/details?id=photography.davidgray.boyandwatch)
 
-You'll need three four to recreate this:
+You'll need these five fonts to recreate this:
 
 * `Futura PT` for the "Dot Matrix", "Battery / Power", and "Boy And Watch" text
 * `GAMECUBEN DualSet` for the "ADVANCE" text
 * `Comic Sans MS` for the "COLOR" text
 * `Arial` for the "SP" text
+* `Virtual Boy` for the Virtual Boy text [font source](https://font.download/font/virtual-boy)
 
-The boot and heart icons are hand-made using the [8-bit icon drawer](https://apollowayne.me/8bit-Icon-Drawer/index.html). The heart is my own creation, the boot is inspired by the pegasus shoes in The Legend of Zelda: Link's Awakening (because drawing 16x16 icons that look like things is tough!).
+The boot and heart icons are hand-made using the [8-bit icon drawer](https://apollowayne.me/8bit-Icon-Drawer/index.html). The heart is my own creation, the boot is inspired by the pegasus shoes in The Legend of Zelda: Link's Awakening (because drawing unique 16x16 icons that look like things is tough!).
 
 At the start of the SVG definition, there's two classes you can set, indicated by the IDs `colour-variation` and `case-variation`. Colour variation can be set to any one of these:
 
@@ -25,9 +26,9 @@ At the start of the SVG definition, there's two classes you can set, indicated b
 
 And case variation can be set to any one of these:
 
-`gb`, `gbp`, `gbl`, `gbc`, `gba`, `gba-sp`, `gbm`
+`gb`, `gbp`, `gbl`, `gbc`, `gba`, `gba-sp`, `gbm`, `vb`
 
-Note that some variants, like `ripcurl` and `pokemon` don't contain the decals due to copyright. Also, some combinations may not look as intended, and that's usually because the actual design it's modelled after doesn't exist for that combination (e.g. Ozzie! Ozzie! Ozzie! was for Game Boy Color only, and never existed on the DMG-01)
+Note that some variants, like `ripcurl` and `pokemon` don't contain the decals due to copyright. Also, some combinations may not look as intended, and that's usually because the actual design it's modelled after doesn't exist for that combination (e.g. Ozzie! Ozzie! Ozzie! was for Game Boy Color only, and never existed on the DMG-01). Also `vb` has no customization options yet, and `gbm` is still a work in progress
 
 ## watch-advance
 
